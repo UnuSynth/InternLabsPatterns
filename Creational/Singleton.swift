@@ -1,3 +1,5 @@
+// MARK: - Singleton
+
 public final class LevelsManager {
     public static let shared: LevelsManager = .init()
     private var levelsDirectory: String
@@ -6,11 +8,13 @@ public final class LevelsManager {
         levelsDirectory = "~/Sokoban/Levels"
     }
     
-    public func readFile(level: String) -> String {
-        // Read level from file here
-        return "Level #\(level):\n\n" + "33333\n31003\n30203\n30403\n33333"
+    public func readFile(name: String) -> String {
+        // Read level from file here (You should use FileReader here)
+        return "Level #\(name):\n\n" + "33333\n31003\n30203\n30403\n33333"
     }
 }
+
+// MARK: - Model from MVCSokobanPattern
 
 public class Model {
     private var currentLevel: String?
@@ -23,6 +27,8 @@ public class Model {
         print(currentLevel ?? "Empty level\n")
     }
 }
+
+// MARK: - Client Implementation
 
 let model: Model = .init()
 model.printLevel()

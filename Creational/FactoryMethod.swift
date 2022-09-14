@@ -1,3 +1,5 @@
+// MARK: Letters
+
 public protocol Letter {
     func showMessage()
 }
@@ -15,6 +17,7 @@ public class BusinessLetter: Letter {
 }
 
 // ---------------------------------------------
+// MARK: - Factories
 
 public protocol Factory {
     func createLetter() -> Letter
@@ -33,6 +36,7 @@ public class BusinessLetterFactory: Factory {
 }
 
 // ---------------------------------------------
+// MARK: - Client Implementation
 
 public class SomeClientCode {
     public func show(greating: String, factory: Factory) {
