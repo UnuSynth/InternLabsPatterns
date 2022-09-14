@@ -1,31 +1,53 @@
-public protocol Button {
-    func onTap()
+public protocol Letter {
+    func showMessage()
 }
 
-public class RoundButton: Button {
-    public func onTap() {
-        print("I am RoundButton instance")
+public class LoveLetter: Letter {
+    public func showMessage() {
+        print("I love you <3")
     }
 }
 
-public class SquareButton: Button {
-    public func onTap() {
-        print("I am RoundButton instance")
+public class BusinessLetter: Letter {
+    public func showMessage() {
+        print("You are hired!")
     }
 }
+
+// ---------------------------------------------
 
 public protocol Creator {
-    func createButton() -> Button
+    func createLetter() -> Letter
 }
 
-public class RoundButtonCreator: Creator {
-    public func createButton() -> Button {
-        return RoundButton()
+public class LoveLetterCreator: Creator {
+    public func createLetter() -> Letter {
+        return LoveLetter()
     }
 }
 
-public class SquareButtonCreator: Creator {
-    public func createButton() -> Button {
-        return SquareButton()
+public class BusinessLetterCreator: Creator {
+    public func createLetter() -> Letter {
+        return BusinessLetter()
     }
 }
+
+// ---------------------------------------------
+
+public class SomeClientCode {
+    public func show(greating: String, creator: Creator) {
+        let letter: Letter = creator.createLetter()
+        print(greating)
+        letter.showMessage()
+    }
+}
+
+let clientCode: SomeClientCode = .init()
+
+print("------------Love letter------------\n")
+
+clientCode.show(greating: "Hi Amantay,", creator: LoveLetterCreator())
+
+print("\n------------Business letter------------\n")
+
+clientCode.show(greating: "Dear Amantay,\nWe have good news for you:", creator: BusinessLetterCreator())
