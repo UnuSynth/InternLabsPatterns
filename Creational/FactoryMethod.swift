@@ -16,17 +16,17 @@ public class BusinessLetter: Letter {
 
 // ---------------------------------------------
 
-public protocol Creator {
+public protocol Factory {
     func createLetter() -> Letter
 }
 
-public class LoveLetterCreator: Creator {
+public class LoveLetterFactory: Factory {
     public func createLetter() -> Letter {
         return LoveLetter()
     }
 }
 
-public class BusinessLetterCreator: Creator {
+public class BusinessLetterFactory: Factory {
     public func createLetter() -> Letter {
         return BusinessLetter()
     }
@@ -35,8 +35,8 @@ public class BusinessLetterCreator: Creator {
 // ---------------------------------------------
 
 public class SomeClientCode {
-    public func show(greating: String, creator: Creator) {
-        let letter: Letter = creator.createLetter()
+    public func show(greating: String, factory: Factory) {
+        let letter: Letter = factory.createLetter()
         print(greating)
         letter.showMessage()
     }
@@ -46,8 +46,8 @@ let clientCode: SomeClientCode = .init()
 
 print("------------Love letter------------\n")
 
-clientCode.show(greating: "Hi Amantay,", creator: LoveLetterCreator())
+clientCode.show(greating: "Hi Amantay,", factory: LoveLetterFactory())
 
 print("\n------------Business letter------------\n")
 
-clientCode.show(greating: "Dear Amantay,\nWe have good news for you:", creator: BusinessLetterCreator())
+clientCode.show(greating: "Dear Amantay,\nWe have good news for you:", factory: BusinessLetterFactory())
