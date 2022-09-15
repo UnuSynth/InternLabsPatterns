@@ -20,7 +20,7 @@ public class Model {
     private var currentLevel: String?
     
     public func loadLevel(level: String) {
-        currentLevel = LevelsManager.shared.readFile(level: level)
+        currentLevel = LevelsManager.shared.readFile(name: level)
     }
 
     public func printLevel() {
